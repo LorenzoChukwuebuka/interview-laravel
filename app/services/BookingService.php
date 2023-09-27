@@ -71,15 +71,14 @@ class BookingService implements IBookingService
     }
     public function get_specific_flight_booking(Request $data)
     {
-        $book = $this->bookRepository->get_specific_flight_booking($data);
+        $book = $this->bookingRepository->get_specific_flight_booking($data);
 
         if ($book->count() == 0) {
             throw new \Exception("No records found");
         }
         return $book;
     }
-    public function update_flight_booking()
-    {}
+     
     public function pay_for_flight_booking()
     {}
 }

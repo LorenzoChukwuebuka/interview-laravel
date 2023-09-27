@@ -77,7 +77,7 @@ class BookingRepository implements IBookingRepository
         return $booking;
     }
    
-    public function pay_for_flight_booking(PaymentDTO $data)
+    public function pay_for_flight_booking()
     {
         
     }

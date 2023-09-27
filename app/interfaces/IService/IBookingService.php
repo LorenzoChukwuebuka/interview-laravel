@@ -14,6 +14,5 @@ interface IBookingService
     public function create_flight_booking(CreateBookingDTO $data);
     public function get_all_flight_booking();
     public function get_specific_flight_booking(Request $data);
-    public function update_flight_booking();
     public function pay_for_flight_booking();
 }

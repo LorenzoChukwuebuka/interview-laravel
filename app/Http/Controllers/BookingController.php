@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\DTO\LoginUserDTO;
-use App\DTO\CreateUserDTO;
-use App\Traits\ApiResponse;
-use Illuminate\Http\Request;
 use App\DTO\CreateBookingDTO;
+use App\DTO\CreateUserDTO;
+use App\DTO\LoginUserDTO;
 use App\Http\Controllers\Controller;
 use App\interfaces\IService\IBookingService;
+use App\Traits\ApiResponse;
+use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
@@ -50,4 +50,15 @@ class BookingController extends Controller
             return $this->fail($th->getMessage());
         }
     }
+
+    public function get_specific_booking(Request $request)
+    {
+        try {
+            $result = $this->bookingService->get_specific_flight_booking($request);
+            return $this->success('listed successfully', $result);
+        } catch (\Throwable $th) {
+            return $this->fail([$th->getMessage(), $th->getLine(), $th->getFile()]);
+        }
+    }
+
 }
