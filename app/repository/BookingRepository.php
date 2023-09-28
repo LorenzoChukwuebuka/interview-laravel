@@ -7,16 +7,18 @@ use App\DTO\CreateUserDTO;
 use App\DTO\LoginUserDTO;
 use App\interfaces\IRepository\IBookingRepository;
 use App\Models\Booking;
+use App\Models\Payments;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class BookingRepository implements IBookingRepository
 {
-    public function __construct(User $userModel, Booking $bookingModel)
+    public function __construct(User $userModel, Booking $bookingModel, Payments $paymentModel)
     {
         $this->userModel = $userModel;
         $this->bookingModel = $bookingModel;
+        $this->paymentModel = $paymentModel;
     }
     public function create_user(CreateUserDTO $data)
     {
@@ -76,9 +78,15 @@ class BookingRepository implements IBookingRepository
 
         return $booking;
     }
-   
-    public function pay_for_flight_booking()
+
+    public function pay_for_flight_booking(Request $data)
     {
-        
+        $payment = $this->paymentModel::create([
+            "user_id" => auth()->user()->id,
+            "booking_id" => $data->booking_id,
+            "amount" => $data->amount,
+        ]);
+
+        return $payment;
     }
 }

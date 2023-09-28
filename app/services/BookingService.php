@@ -79,6 +79,20 @@ class BookingService implements IBookingService
         return $book;
     }
      
-    public function pay_for_flight_booking()
-    {}
+    public function pay_for_flight_booking(Request $data)
+    {
+        
+        $validator = Validator::make((array) $data, [
+            "user_id" => "required",
+            "booking_id" => "required",
+            "amount" => "required"
+        ]);
+
+        if ($validator->fails()) {
+            throw new CustomValidationException($validator);
+        }
+
+        return $this->bookingRepository->pay_for_flight_booking($data);
+
+    }
 }

@@ -57,7 +57,17 @@ class BookingController extends Controller
             $result = $this->bookingService->get_specific_flight_booking($request);
             return $this->success('listed successfully', $result);
         } catch (\Throwable $th) {
-            return $this->fail([$th->getMessage(), $th->getLine(), $th->getFile()]);
+            return $this->fail($th->getMessage());
+        }
+    }
+
+    public function make_payment(Request $request)
+    {
+        try {
+            $result = $this->bookingService->pay_for_flight_booking($request);
+            return $this->success('payment made successfully', $result);
+        } catch (\Throwable $th) {
+            return $this->fail($th->getMessage());
         }
     }
 
