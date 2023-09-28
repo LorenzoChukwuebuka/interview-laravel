@@ -79,7 +79,7 @@ class BookingRepository implements IBookingRepository
         return $booking;
     }
 
-    public function pay_for_flight_booking(Request $data)
+    public function pay_for_flight_booking(object $data)
     {
         $payment = $this->paymentModel::create([
             "user_id" => auth()->user()->id,
@@ -87,6 +87,8 @@ class BookingRepository implements IBookingRepository
             "amount" => $data->amount,
         ]);
 
-        return $payment;
+        $ticket_number = $payment::find($payment->id);
+
+        return ["ticket_number" => $ticket_number->ticket_number];
     }
 }

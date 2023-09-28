@@ -64,7 +64,7 @@ class BookingController extends Controller
     public function make_payment(Request $request)
     {
         try {
-            $result = $this->bookingService->pay_for_flight_booking($request);
+            $result = $this->bookingService->pay_for_flight_booking((object) $request->all());
             return $this->success('payment made successfully', $result);
         } catch (\Throwable $th) {
             return $this->fail($th->getMessage());

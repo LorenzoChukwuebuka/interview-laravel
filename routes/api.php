@@ -25,6 +25,7 @@ Route::post('/create-flight-schedule',[BookingController::class,'create_booking'
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/filter-available-flight',[BookingController::class,'get_specific_booking']);
+    Route::post('/make-payment',[BookingController::class,'make_payment']);
     
 });
 
