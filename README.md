@@ -9,13 +9,42 @@
     
 -   ### Step 2: Install the dependencies <br>
 
-    Navigate into the cloned project directory and install the laravel dependencies using `composer install`. <br> <br>
-    Now install the node modules using `npm install`. If you encounter some errors installing the node modules use the force command, run `npm install --force`.
+    Navigate into the cloned project directory and install the laravel dependencies using `composer install`.  <br>
+    If you don't have composer installed. Kindly install PHP and Composer. 
 
 -   ### Step 3: Copy and update environment variables <br>
 
-    Run `cp .env.example .env` to copy the environment variables from the example .env file
+     from the .env.example copy to  the environment variables from the example .env file
 
--   ### Step 4: Generate APP_KEY and Storage Link <br>
+-   ### Step 4: Generate APP_KEY  <br>
 
-    Run `php artisan key:generate` to generate the key which will be copied instantly to the .env file and then run `php artisan storage:link` to add the storage link to the environment.
+    Run `php artisan key:generate` to generate the key which will be copied instantly to the .env file and then run 
+
+    ### Step 5:  Setup Database
+    Make sure that you have an RDBMS installed MYSQL,PGSQL OR SQLITE
+
+    in the .env section update the following variables with your own settings
+    
+     DB_CONNECTION=mysql
+     DB_HOST=127.0.0.1
+     DB_PORT=3306
+     DB_DATABASE=interview_app
+     DB_USERNAME=root
+     DB_PASSWORD=  
+
+     then run `php artisan migrate` to migrate the database tables 
+
+     ### 6: API
+
+     To run the API endpoints... Kindly visit the following link to enable view the api documentation
+     `https://documenter.getpostman.com/view/20093332/2s9YJZ4QYR`
+
+
+     ### 7: Test
+
+     ## NB: 
+
+       I am not so good with integration tests. I tried learning it for the purpose of this interview.<br>
+        Having worked on many projects without unit tests. I am unable to write one within a 24hr notice. 
+        I tried but the tests keep failing. 
+    
